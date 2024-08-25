@@ -24,9 +24,9 @@
     "chalk": "^4"
   },
   "devDependencies": {
-    "@sadzurami/eslint-config": "https://github.com/Sadzurami/eslint-config",
-    "@sadzurami/prettier-config": "https://github.com/Sadzurami/prettier-config",
-    "@sadzurami/ts-config": "https://github.com/Sadzurami/ts-config.git",
+    "@sadzurami/eslint-config": "^1.0.0",
+    "@sadzurami/prettier-config": "^1.0.0",
+    "@sadzurami/ts-config": "^1.0.0",
     "@types/node": "^18",
     "del-cli": "^5.1.0",
     "eslint": "^8",
