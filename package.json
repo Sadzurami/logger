@@ -1,0 +1,41 @@
+{
+  "name": "@sadzurami/logger",
+  "version": "0.0.0",
+  "description": "Simple logger for my projects",
+  "author": "Sadzurami (https://github.com/Sadzurami)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sadzurami/logger.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "del-cli dist && tsc",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "chalk": "^4"
+  },
+  "devDependencies": {
+    "@sadzurami/eslint-config": "https://github.com/Sadzurami/eslint-config",
+    "@sadzurami/prettier-config": "https://github.com/Sadzurami/prettier-config",
+    "@sadzurami/ts-config": "https://github.com/Sadzurami/ts-config.git",
+    "@types/node": "^18",
+    "del-cli": "^5.1.0",
+    "eslint": "^8",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
+  },
+  "keywords": [
+    "logger",
+    "console"
+  ],
+  "sideEffects": false
+}
