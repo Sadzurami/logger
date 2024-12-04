@@ -11,6 +11,12 @@ export class Logger {
     this.options = options || {};
   }
 
+  public extend(name: string, options?: LoggerOptions): Logger {
+    options = { ...this.options, ...options };
+
+    return new Logger(name, options);
+  }
+
   public info(...messages: string[]) {
     const prefix = `${new Date().toLocaleTimeString()} - ${chalk.inverse('info')} [${this.name}]`;
     const message = messages.join(' ');
