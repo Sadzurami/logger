@@ -24,13 +24,13 @@
     "chalk": "^4"
   },
   "devDependencies": {
-    "@sadzurami/eslint-config": "^1.0.0",
+    "@sadzurami/eslint-config": "^1.0.1",
     "@sadzurami/prettier-config": "^1.0.0",
-    "@sadzurami/ts-config": "^1.0.0",
+    "@sadzurami/ts-config": "^1.0.1",
     "@types/node": "^18",
-    "del-cli": "^5.1.0",
+    "del-cli": "^6.0.0",
     "eslint": "^8",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.2",
     "typescript": "^5.5.4"
   },
   "keywords": [
