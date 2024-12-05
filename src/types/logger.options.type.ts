@@ -1,6 +1,13 @@
 export type LoggerOptions = {
   /**
-   * Set the maximum length of the displayed message.
+   * Truncate the message to a certain length.
+   *
    */
-  maxStringLength?: number;
+  truncate?: number;
+
+  /**
+   * Redact sensitive info from the message.
+   *
+   */
+  redact?: { pattern: string | RegExp; replacement: string }[];
 };

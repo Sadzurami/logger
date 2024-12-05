@@ -39,14 +39,24 @@ export class Logger {
   }
 
   private formatMessage(message: string): string {
-    if (this.options.maxStringLength) message = this.truncateMessage(message);
+    if (this.options.redact) message = this.redactMessage(message);
+    if (this.options.truncate) message = this.truncateMessage(message);
+
+    return message;
+  }
+
+  private redactMessage(message: string): string {
+    for (const { pattern, replacement } of this.options.redact) message = message.replace(pattern, replacement);
 
     return message;
   }
 
   private truncateMessage(message: string): string {
-    if (message.length < this.options.maxStringLength) return message;
+    if (message.length < this.options.truncate) return message;
 
-    return message.slice(0, this.options.maxStringLength) + '...';
+    const postfix = '...';
+    const length = this.options.truncate - postfix.length;
+
+    return message.slice(0, length) + postfix;
   }
 }
