@@ -1,5 +1,11 @@
 export type LoggerOptions = {
   /**
+   * Convert the message to lowercase.
+   *
+   */
+  lowercase?: boolean;
+
+  /**
    * Truncate the message to a certain length.
    *
    */

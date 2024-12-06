@@ -41,6 +41,7 @@ export class Logger {
   private formatMessage(message: string): string {
     if (this.options.redact) message = this.redactMessage(message);
     if (this.options.truncate) message = this.truncateMessage(message);
+    if (this.options.lowercase) message = message.toLowerCase();
 
     return message;
   }
