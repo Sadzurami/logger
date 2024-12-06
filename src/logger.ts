@@ -6,9 +6,9 @@ export class Logger {
   public readonly name: string;
   public readonly options: LoggerOptions;
 
-  constructor(name: string, options?: LoggerOptions) {
+  constructor(name: string, options: LoggerOptions = {}) {
     this.name = name;
-    this.options = options || {};
+    this.options = options;
   }
 
   public extend(name: string, options?: LoggerOptions): Logger {
@@ -52,10 +52,10 @@ export class Logger {
   }
 
   private truncateMessage(message: string): string {
-    if (message.length < this.options.truncate) return message;
+    if (message.length < this.options.truncate.length) return message;
 
     const postfix = '...';
-    const length = this.options.truncate - postfix.length;
+    const length = this.options.truncate.length - postfix.length;
 
     return message.slice(0, length) + postfix;
   }

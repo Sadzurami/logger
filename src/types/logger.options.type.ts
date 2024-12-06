@@ -3,7 +3,7 @@ export type LoggerOptions = {
    * Truncate the message to a certain length.
    *
    */
-  truncate?: number;
+  truncate?: { length: number };
 
   /**
    * Redact sensitive info from the message.
