@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import colors from 'picocolors';
 
 import { LoggerOptions } from './types/logger.options.type';
 
@@ -18,21 +18,21 @@ export class Logger {
   }
 
   public info(...messages: string[]) {
-    const prefix = `${new Date().toLocaleTimeString()} - ${chalk.inverse('info')} [${this.name}]`;
+    const prefix = `${new Date().toLocaleTimeString()} - ${colors.inverse('info')} [${this.name}]`;
     const message = messages.join(' ');
 
     console.log(this.formatMessage(`${prefix} ${message}`));
   }
 
   public warn(...messages: string[]) {
-    const prefix = `${new Date().toLocaleTimeString()} - ${chalk.bgCyanBright('warn')} [${this.name}]`;
+    const prefix = `${new Date().toLocaleTimeString()} - ${colors.bgCyanBright('warn')} [${this.name}]`;
     const message = messages.join(' ');
 
     console.log(this.formatMessage(`${prefix} ${message}`));
   }
 
   public error(...messages: string[]) {
-    const prefix = `${new Date().toLocaleTimeString()} - ${chalk.bgMagentaBright('error')} [${this.name}]`;
+    const prefix = `${new Date().toLocaleTimeString()} - ${colors.bgMagentaBright('error')} [${this.name}]`;
     const message = messages.join(' ');
 
     console.log(this.formatMessage(`${prefix} ${message}`));
