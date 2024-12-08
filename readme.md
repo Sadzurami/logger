@@ -33,19 +33,19 @@ Returns a new instance of `Logger`.
 
 ### instance
 
-#### `info(message: string, ...args: any[]): void`
+#### `.info(...messages: any[]): void`
 
 Log message with level `info`.
 
 - `messages` (...array) - messages to log
 
-#### `warn(message: string, ...args: any[]): void`
+#### `.warn(...messages: any[]): void`
 
 Log message with level `warn`.
 
 - `messages` (...array) - messages to log
 
-#### `error(message: string, ...args: any[]): void`
+#### `.error(...messages: any[]): void`
 
 Log message with level `error`.
 
