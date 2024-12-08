@@ -12,12 +12,23 @@ export class Logger {
     this.options = options;
   }
 
+  /**
+   * Returns a new instance of `Logger` with the same options.
+   *
+   * @param name - Logger name.
+   * @param options - Logger options.
+   */
   public extend(name: string, options?: LoggerOptions): Logger {
     options = { ...this.options, ...options };
 
     return new Logger(name, options);
   }
 
+  /**
+   * Logs message with `info` level.
+   *
+   * @param messages - Messages to log.
+   */
   public info(...messages: any[]) {
     const prefix = `${new Date().toLocaleTimeString()} - ${colors.inverse('info')} [${this.name}]`;
 
@@ -26,6 +37,11 @@ export class Logger {
     console.log(this.formatMessage(`${prefix} ${message}`));
   }
 
+  /**
+   * Logs message with `warn` level.
+   *
+   * @param messages - Messages to log.
+   */
   public warn(...messages: any[]) {
     const prefix = `${new Date().toLocaleTimeString()} - ${colors.bgCyanBright('warn')} [${this.name}]`;
 
@@ -34,6 +50,11 @@ export class Logger {
     console.log(this.formatMessage(`${prefix} ${message}`));
   }
 
+  /**
+   * Logs message with `error` level.
+   *
+   * @param messages - Messages to log.
+   */
   public error(...messages: any[]) {
     const prefix = `${new Date().toLocaleTimeString()} - ${colors.bgMagentaBright('error')} [${this.name}]`;
 
