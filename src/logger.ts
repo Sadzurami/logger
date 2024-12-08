@@ -15,8 +15,8 @@ export class Logger {
   /**
    * Returns a new instance of `Logger` with the same options.
    *
-   * @param name - Logger name.
-   * @param options - Logger options.
+   * @param name - Logger namespace to override.
+   * @param options - Logger options to override.
    */
   public extend(name: string, options?: LoggerOptions): Logger {
     options = { ...this.options, ...options };
