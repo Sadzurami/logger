@@ -20,40 +20,47 @@ logger.info('Logger is working');
 
 ## API
 
-### constructor(namespace: string, options?: LoggerOptions)
+### constructor(name: string, options?: LoggerOptions)
 
 Returns a new instance of `Logger`.
 
-- `namespace` (string) - Namespace of logger.
+- `name` (string) - Logger namespace.
 - `options.redact` (array) - Objects with `pattern` (string | RegExp) and `replacement` (string) keys.
-- `options.truncate.length` (number) - Truncate message to specified length.
+- `options.truncate` (boolean | object) - Truncate message to specified length.
 - `options.lowercase` (boolean) - Convert message to lowercase.
 
 ### instance
 
+#### `.extend(name: string, options?: LoggerOptions): Logger`
+
+Returns a new instance of `Logger` with the same options.
+
+- `name` (string) - Logger namespace.
+- `options` (LoggerOptions) - Logger options.
+
 #### `.info(...messages: any[]): void`
 
-Log message with level `info`.
+Logs message with `info` level.
 
-- `messages` (...array) - messages to log
+- `messages` (...array) - Messages to log.
 
 #### `.warn(...messages: any[]): void`
 
-Log message with level `warn`.
+Logs message with `warn` level.
 
-- `messages` (...array) - messages to log
+- `messages` (...array) - Messages to log.
 
 #### `.error(...messages: any[]): void`
 
-Log message with level `error`.
+Logs message with `error` level.
 
-- `messages` (...array) - messages to log
+- `messages` (...array) - Messages to log.
 
 #### instanse.properties
 
-- `name` (string) - Namespace of logger.
+- `name` (string) - Logger namespace.
 - `colors` (object) - Object with colors.
-- `options` (LoggerOptions) - Options of logger.
+- `options` (LoggerOptions) - Logger options.
 
 ## Advanced example
 
