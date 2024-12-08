@@ -4,6 +4,7 @@ import { LoggerOptions } from './types/logger.options.type';
 
 export class Logger {
   public readonly name: string;
+  public readonly colors = colors;
   public readonly options: LoggerOptions;
 
   constructor(name: string, options: LoggerOptions = {}) {
