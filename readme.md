@@ -25,9 +25,9 @@ logger.info('Logger is working');
 Returns a new instance of `Logger`.
 
 - `name` (string) - Logger namespace.
-- `options.redact` (array) - Objects with `pattern` (string | RegExp) and `replacement` (string) keys.
-- `options.truncate` (boolean | object) - Truncate message to specified length.
-- `options.lowercase` (boolean) - Convert message to lowercase.
+- `options.redact` (object, optional) - Redact message options.
+- `options.truncate` (object, optional) - Truncate message options.
+- `options.lowercase` (boolean, optional) - Convert message to lowercase.
 
 ### instance
 
@@ -54,13 +54,35 @@ Logs message with `error` level.
 Returns a new instance of `Logger` with the same options.
 
 - `name` (string) - Logger namespace to override.
-- `options` (LoggerOptions) - Logger options to override.
+- `options` (object) - Logger options to override.
 
 #### instanse.properties
 
 - `name` (string) - Logger namespace.
-- `colors` (object) - Object with colors.
-- `options` (LoggerOptions) - Logger options.
+- `colors` (object) - Logger colors.
+- `options` (object) - Logger options.
+
+### Additional functions
+
+#### `formatError(error: Error): string`
+
+Returns formatted error message as string, including cause if exists.
+
+- `error` (Error) - Error to format.
+
+#### `redactMessage(message: string, options: RedactMessageOptions): string`
+
+Returns redacted message by provided patterns.
+
+- `message` (string) - Message to redact.
+- `options` (object) - Redact options.
+
+#### `truncateMessage(message: string, options: TruncateMessageOptions): string`
+
+Returns truncated message to specified length.
+
+- `message` (string) - Message to truncate.
+- `options` (object) - Truncate options.
 
 ## Advanced example
 
