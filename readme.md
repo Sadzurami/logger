@@ -31,6 +31,13 @@ Returns a new instance of `Logger`.
 
 ### instance
 
+#### `.extend(name: string, options?: LoggerOptions): Logger`
+
+Returns a new instance of `Logger` with the same options.
+
+- `name` (string) - Logger namespace to override.
+- `options` (object) - Logger options to override.
+
 #### `.info(...messages: any[]): void`
 
 Logs message with `info` level.
@@ -48,13 +55,6 @@ Logs message with `warn` level.
 Logs message with `error` level.
 
 - `messages` (...array) - Messages to log.
-
-#### `.extend(name: string, options?: LoggerOptions): Logger`
-
-Returns a new instance of `Logger` with the same options.
-
-- `name` (string) - Logger namespace to override.
-- `options` (object) - Logger options to override.
 
 #### instanse.properties
 
