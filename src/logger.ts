@@ -17,25 +17,32 @@ export class Logger {
     return new Logger(name, options);
   }
 
-  public info(...messages: string[]) {
+  public info(...messages: any[]) {
     const prefix = `${new Date().toLocaleTimeString()} - ${colors.inverse('info')} [${this.name}]`;
-    const message = messages.join(' ');
+
+    const message = this.normalizeMessages(messages).join(' ');
 
     console.log(this.formatMessage(`${prefix} ${message}`));
   }
 
-  public warn(...messages: string[]) {
+  public warn(...messages: any[]) {
     const prefix = `${new Date().toLocaleTimeString()} - ${colors.bgCyanBright('warn')} [${this.name}]`;
-    const message = messages.join(' ');
+
+    const message = this.normalizeMessages(messages).join(' ');
 
     console.log(this.formatMessage(`${prefix} ${message}`));
   }
 
-  public error(...messages: string[]) {
+  public error(...messages: any[]) {
     const prefix = `${new Date().toLocaleTimeString()} - ${colors.bgMagentaBright('error')} [${this.name}]`;
-    const message = messages.join(' ');
+
+    const message = this.normalizeMessages(messages).join(' ');
 
     console.log(this.formatMessage(`${prefix} ${message}`));
+  }
+
+  private formatError(error: Error): string {
+    return `${error.message}${error.cause ? ` (${(error.cause as any).message})` : ''}`;
   }
 
   private formatMessage(message: string): string {
@@ -59,5 +66,25 @@ export class Logger {
     const length = this.options.truncate.length - postfix.length;
 
     return message.slice(0, length) + postfix;
+  }
+
+  private normalizeMessages(messages: any[]): string[] {
+    const entries: string[] = [];
+
+    for (const message of messages) {
+      if (message instanceof Error) {
+        entries.push(this.formatError(message));
+        continue;
+      }
+
+      if (typeof message === 'object') {
+        entries.push(JSON.stringify(message));
+        continue;
+      }
+
+      entries.push(message);
+    }
+
+    return entries;
   }
 }
