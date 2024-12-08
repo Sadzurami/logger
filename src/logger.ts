@@ -63,10 +63,10 @@ export class Logger {
   }
 
   private truncateMessage(message: string): string {
-    if (message.length < this.options.truncate.length) return message;
+    const options = this.options.truncate == true ? { length: process.stdout.columns } : (this.options.truncate as any);
 
     const postfix = '...';
-    const length = this.options.truncate.length - postfix.length;
+    const length = options.length - postfix.length;
 
     return message.slice(0, length) + postfix;
   }

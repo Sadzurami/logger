@@ -1,19 +1,16 @@
 export type LoggerOptions = {
   /**
-   * Convert the message to lowercase.
-   *
-   */
-  lowercase?: boolean;
-
-  /**
-   * Truncate the message to a certain length.
-   *
-   */
-  truncate?: { length: number };
-
-  /**
-   * Redact sensitive info from the message.
-   *
+   * Redact sensitive info from message.
    */
   redact?: { pattern: string | RegExp; replacement: string }[];
+
+  /**
+   * Truncate message to certain length.
+   */
+  truncate?: boolean | { length: number };
+
+  /**
+   * Convert message to lowercase.
+   */
+  lowercase?: boolean;
 };
