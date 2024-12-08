@@ -55,7 +55,9 @@ export class Logger {
   }
 
   private redactMessage(message: string): string {
-    for (const { pattern, replacement } of this.options.redact) message = message.replace(pattern, replacement);
+    for (const { pattern, replacement } of this.options.redact) {
+      message = message.replace(pattern, replacement);
+    }
 
     return message;
   }
