@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-npm install https://github.com/Sadzurami/logger
+npm install @sadzurami/logger
 ```
 
 ## Usage
