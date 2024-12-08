@@ -10,8 +10,6 @@ npm install @sadzurami/logger
 
 ## Usage
 
-`main.ts`
-
 ```ts
 import { Logger } from '@sadzurami/logger';
 
