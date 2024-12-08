@@ -1,13 +1,16 @@
+import { RedactMessageOptions } from './redact-message.options.type';
+import { TruncateMessageOptions } from './truncate-message.options.type';
+
 export type LoggerOptions = {
   /**
    * Redact sensitive info from message.
    */
-  redact?: { pattern: string | RegExp; replacement: string }[];
+  redact?: RedactMessageOptions;
 
   /**
    * Truncate message to certain length.
    */
-  truncate?: boolean | { length: number };
+  truncate?: TruncateMessageOptions;
 
   /**
    * Convert message to lowercase.

@@ -1,5 +1,6 @@
 import colors from 'picocolors';
 
+import { formatError, redactMessage, truncateMessage } from './helpers';
 import { LoggerOptions } from './types/logger.options.type';
 
 export class Logger {
@@ -63,33 +64,12 @@ export class Logger {
     console.log(this.formatMessage(`${prefix} ${message}`));
   }
 
-  private formatError(error: Error): string {
-    return `${error.message}${error.cause ? ` (${(error.cause as any).message})` : ''}`;
-  }
-
   private formatMessage(message: string): string {
-    if (this.options.redact) message = this.redactMessage(message);
-    if (this.options.truncate) message = this.truncateMessage(message);
+    if (this.options.redact) message = redactMessage(message, this.options.redact);
+    if (this.options.truncate) message = truncateMessage(message, this.options.truncate);
     if (this.options.lowercase) message = message.toLowerCase();
 
     return message;
-  }
-
-  private redactMessage(message: string): string {
-    for (const { pattern, replacement } of this.options.redact) {
-      message = message.replace(pattern, replacement);
-    }
-
-    return message;
-  }
-
-  private truncateMessage(message: string): string {
-    const options = this.options.truncate == true ? { length: process.stdout.columns } : (this.options.truncate as any);
-
-    const postfix = '...';
-    const length = options.length - postfix.length;
-
-    return message.slice(0, length) + postfix;
   }
 
   private normalizeMessages(messages: any[]): string[] {
@@ -97,7 +77,7 @@ export class Logger {
 
     for (const message of messages) {
       if (message instanceof Error) {
-        entries.push(this.formatError(message));
+        entries.push(formatError(message));
         continue;
       }
 
