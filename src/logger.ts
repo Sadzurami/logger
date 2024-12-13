@@ -31,7 +31,7 @@ export class Logger {
    * @param messages - Messages to log.
    */
   public info(...messages: any[]) {
-    const prefix = `${new Date().toLocaleTimeString()} - ${colors.inverse('info')} [${this.name}]`;
+    const prefix = `${this.createTime()} - ${colors.inverse('info')} [${this.name}]`;
 
     const message = this.normalizeMessages(messages).join(' ');
 
@@ -44,7 +44,7 @@ export class Logger {
    * @param messages - Messages to log.
    */
   public warn(...messages: any[]) {
-    const prefix = `${new Date().toLocaleTimeString()} - ${colors.bgCyanBright('warn')} [${this.name}]`;
+    const prefix = `${this.createTime()} - ${colors.bgCyanBright('warn')} [${this.name}]`;
 
     const message = this.normalizeMessages(messages).join(' ');
 
@@ -57,11 +57,21 @@ export class Logger {
    * @param messages - Messages to log.
    */
   public error(...messages: any[]) {
-    const prefix = `${new Date().toLocaleTimeString()} - ${colors.bgMagentaBright('error')} [${this.name}]`;
+    const prefix = `${this.createTime()} - ${colors.bgMagentaBright('error')} [${this.name}]`;
 
     const message = this.normalizeMessages(messages).join(' ');
 
     console.log(this.formatMessage(`${prefix} ${message}`));
+  }
+
+  private createTime() {
+    const now = new Date();
+
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    return `${hours}:${minutes}:${seconds}`;
   }
 
   private formatMessage(message: string): string {
