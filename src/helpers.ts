@@ -4,10 +4,18 @@ import { RedactMessageOptions } from './types/redact-message.options.type';
 import { TruncateMessageOptions } from './types/truncate-message.options.type';
 
 /**
- * Formats an error to string, including the cause if exists.
+ * Formats an error to string, including all nested causes.
  */
 export function formatError(error: Error): string {
-  return `${error.message}${error.cause ? ` (${(error.cause as any).message})` : ''}`;
+  let message: string = error.message;
+  let cause: any = error.cause;
+
+  while (cause) {
+    message += ` -> ${cause.message}`;
+    cause = cause.cause;
+  }
+
+  return message;
 }
 
 /**
