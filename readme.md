@@ -36,7 +36,13 @@ Returns a new instance of `Logger`.
 - `options.truncate` (object, optional) - Truncate message options.
 - `options.lowercase` (boolean, optional) - Convert message to lowercase.
 
-### instance
+### instanse.properties
+
+- `name` (string) - Logger namespace.
+- `colors` (object) - Logger colors.
+- `options` (object) - Logger options.
+
+### instance.methods
 
 #### `.extend(name: string, options?: LoggerOptions): Logger`
 
@@ -62,12 +68,6 @@ Logs message with `warn` level.
 Logs message with `error` level.
 
 - `messages` (...array) - Messages to log.
-
-#### instanse.properties
-
-- `name` (string) - Logger namespace.
-- `colors` (object) - Logger colors.
-- `options` (object) - Logger options.
 
 ### Additional functions
 
