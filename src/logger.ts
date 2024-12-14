@@ -31,7 +31,7 @@ export class Logger {
    * @param messages - Messages to log.
    */
   public info(...messages: any[]) {
-    const prefix = `${this.createTime()} - ${colors.inverse('info')} [${this.name}]`;
+    const prefix = `${this.createTime()} - ${colors.whiteBright('info')} [${this.name}]`;
 
     const message = this.normalizeMessages(messages).join(' ');
 
@@ -44,7 +44,7 @@ export class Logger {
    * @param messages - Messages to log.
    */
   public warn(...messages: any[]) {
-    const prefix = `${this.createTime()} - ${colors.bgCyanBright('warn')} [${this.name}]`;
+    const prefix = `${this.createTime()} - ${colors.cyanBright('warn')} [${this.name}]`;
 
     const message = this.normalizeMessages(messages).join(' ');
 
@@ -57,7 +57,7 @@ export class Logger {
    * @param messages - Messages to log.
    */
   public error(...messages: any[]) {
-    const prefix = `${this.createTime()} - ${colors.bgMagentaBright('error')} [${this.name}]`;
+    const prefix = `${this.createTime()} - ${colors.magentaBright('error')} [${this.name}]`;
 
     const message = this.normalizeMessages(messages).join(' ');
 
