@@ -15,7 +15,14 @@ import { Logger } from '@sadzurami/logger';
 
 const logger = new Logger('main');
 
-logger.info('Logger is working');
+logger.info('Info message');
+// => 12:34:56.789 - info [main] Info message
+
+logger.warn('Warn message');
+// => 12:34:56.789 - warn [main] Warn message
+
+logger.error(new Error('Error message'));
+// => 12:34:56.789 - error [main] Error message
 ```
 
 ## API
