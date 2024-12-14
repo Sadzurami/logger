@@ -30,7 +30,9 @@ export function redactMessage(message: string, options: RedactMessageOptions): s
 }
 
 /**
- * Truncates a message to a certain length.
+ * Truncates a message to a certain visible length.
+ *
+ * Considers ANSI escape codes and truncates the message properly.
  */
 export function truncateMessage(message: string, options: TruncateMessageOptions): string {
   if (!options) return message;
@@ -40,8 +42,9 @@ export function truncateMessage(message: string, options: TruncateMessageOptions
   ending = options.ending || '...';
 
   length = options.length || process.stdout.columns || 100;
-  length = Math.max(length - ending.length, 0);
+  if (length <= 0) return '';
 
+  length = Math.max(length - ending.length, 0);
   if (message.length <= length) return message.length === length ? message + ending : message;
 
   let result = '';
