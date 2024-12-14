@@ -19,7 +19,7 @@ export class Logger {
    * @param name - Logger namespace to override.
    * @param options - Logger options to override.
    */
-  public extend(name: string, options?: LoggerOptions): Logger {
+  public extend(name: string, options: LoggerOptions = {}): Logger {
     options = { ...this.options, ...options };
 
     return new Logger(name, options);
@@ -33,9 +33,7 @@ export class Logger {
   public info(...messages: any[]) {
     const prefix = `${this.createTime()} - ${colors.whiteBright('info')} [${this.name}]`;
 
-    const message = this.normalizeMessages(messages).join(' ');
-
-    console.log(this.formatMessage(`${prefix} ${message}`));
+    console.log(this.formatMessage(`${prefix} ${this.normalizeMessages(messages).join(' ')}`));
   }
 
   /**
@@ -46,9 +44,7 @@ export class Logger {
   public warn(...messages: any[]) {
     const prefix = `${this.createTime()} - ${colors.cyanBright('warn')} [${this.name}]`;
 
-    const message = this.normalizeMessages(messages).join(' ');
-
-    console.log(this.formatMessage(`${prefix} ${message}`));
+    console.log(this.formatMessage(`${prefix} ${this.normalizeMessages(messages).join(' ')}`));
   }
 
   /**
@@ -59,9 +55,7 @@ export class Logger {
   public error(...messages: any[]) {
     const prefix = `${this.createTime()} - ${colors.magentaBright('error')} [${this.name}]`;
 
-    const message = this.normalizeMessages(messages).join(' ');
-
-    console.log(this.formatMessage(`${prefix} ${message}`));
+    console.log(this.formatMessage(`${prefix} ${this.normalizeMessages(messages).join(' ')}`));
   }
 
   private createTime() {
