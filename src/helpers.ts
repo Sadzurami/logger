@@ -36,10 +36,13 @@ export function truncateMessage(message: string, options: TruncateMessageOptions
   if (!options) return message;
   else options = options === true ? {} : options;
 
-  const length = options.length || process.stdout.columns || 100;
-  const ending = options.ending || '...';
+  let { ending, length } = options;
+  ending = options.ending || '...';
 
-  if (message.length <= length) return message.length === length ? message : message + ending;
+  length = options.length || process.stdout.columns || 100;
+  length = Math.max(length - ending.length, 0);
+
+  if (message.length <= length) return message.length === length ? message + ending : message;
 
   let result = '';
   let visible = 0;
