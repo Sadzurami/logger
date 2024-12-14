@@ -1,1 +1,1 @@
-export type TruncateMessageOptions = boolean | { length: number };
+export type TruncateMessageOptions = boolean | { length?: number; ending?: string };

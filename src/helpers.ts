@@ -1,3 +1,5 @@
+import ansiRegex from 'ansi-regex';
+
 import { RedactMessageOptions } from './types/redact-message.options.type';
 import { TruncateMessageOptions } from './types/truncate-message.options.type';
 
@@ -24,9 +26,29 @@ export function redactMessage(message: string, options: RedactMessageOptions): s
  */
 export function truncateMessage(message: string, options: TruncateMessageOptions): string {
   if (!options) return message;
+  else options = options === true ? {} : options;
 
-  const postfix = '...';
-  const length = (options === true ? process.stdout.columns : options.length) - postfix.length;
+  const length = options.length || process.stdout.columns || 100;
+  const ending = options.ending || '...';
 
-  return message.slice(0, length) + postfix;
+  if (message.length <= length) return message.length === length ? message : message + ending;
+
+  let result = '';
+  let visible = 0;
+
+  const regex = ansiRegex();
+
+  for (const line of message.split(regex)) {
+    if (regex.test(line)) result += line;
+    else {
+      const slice = line.slice(0, length - visible);
+
+      result += slice;
+      visible += slice.length;
+
+      if (visible >= length) break;
+    }
+  }
+
+  return result + ending;
 }

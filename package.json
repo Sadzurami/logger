@@ -21,6 +21,7 @@
     "prepare": "npm run build"
   },
   "dependencies": {
+    "ansi-regex": "^5",
     "picocolors": "^1.1.1"
   },
   "devDependencies": {
