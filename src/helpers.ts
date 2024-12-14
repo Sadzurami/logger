@@ -47,10 +47,10 @@ export function truncateMessage(message: string, options: TruncateMessageOptions
   let result = '';
   let visible = 0;
 
-  const regex = ansiRegex();
+  const regexp = ansiRegex();
 
-  for (const line of message.split(regex)) {
-    if (regex.test(line)) result += line;
+  for (const line of message.split(regexp)) {
+    if (regexp.test(line)) result += line;
     else {
       const slice = line.slice(0, length - visible);
 
