@@ -8,7 +8,9 @@ export class Logger {
   public readonly colors = colors;
   public readonly options: LoggerOptions;
 
-  constructor(name: string, options: LoggerOptions = {}) {
+  constructor(name: string, options?: LoggerOptions) {
+    options = { truncate: true, ...options };
+
     this.name = name;
     this.options = options;
   }
@@ -19,7 +21,7 @@ export class Logger {
    * @param name - Logger namespace to override.
    * @param options - Logger options to override.
    */
-  public extend(name: string, options: LoggerOptions = {}): Logger {
+  public extend(name: string, options?: LoggerOptions) {
     options = { ...this.options, ...options };
 
     return new Logger(name, options);

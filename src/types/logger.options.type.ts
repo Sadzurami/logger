@@ -9,6 +9,8 @@ export type LoggerOptions = {
 
   /**
    * Truncate message to certain length.
+   *
+   * @default true
    */
   truncate?: TruncateMessageOptions;
 
