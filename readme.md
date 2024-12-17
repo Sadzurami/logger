@@ -91,6 +91,12 @@ Returns truncated message to specified length.
 - `message` (string) - Message to truncate.
 - `options` (object) - Truncate options.
 
+#### `normalizeMessages(messages: any[]): string[]`
+
+Returns normalized messages as strings.
+
+- `messages` (...array) - Messages to normalize.
+
 ## Advanced example
 
 ```ts
