@@ -10,7 +10,7 @@ export function formatError(error: Error): string {
   let message: string = error.message;
   let cause: any = error.cause;
 
-  while (cause) {
+  while (cause instanceof Error && cause.message) {
     message += ` -> ${cause.message}`;
     cause = cause.cause;
   }
