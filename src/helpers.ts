@@ -5,6 +5,9 @@ import { TruncateMessageOptions } from './types/truncate-message.options.type';
 
 /**
  * Formats an error to string, including all nested causes.
+ *
+ * @param error - Error to format.
+ * @returns Formatted error message.
  */
 export function formatError(error: Error): string {
   let message: string = error.message;
@@ -20,6 +23,9 @@ export function formatError(error: Error): string {
 
 /**
  * Redacts sensitive information from a message.
+ *
+ * @param message - Message to redact.
+ * @param options - Redact options.
  */
 export function redactMessage(message: string, options: RedactMessageOptions): string {
   for (const { pattern, replacement } of options) {
@@ -33,6 +39,9 @@ export function redactMessage(message: string, options: RedactMessageOptions): s
  * Truncates a message to a certain visible length.
  *
  * Considers ANSI escape codes and truncates the message properly.
+ *
+ * @param message - Message to truncate.
+ * @param options - Truncate options.
  */
 export function truncateMessage(message: string, options: TruncateMessageOptions): string {
   if (!options) return message;
