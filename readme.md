@@ -86,12 +86,16 @@ Returns redacted message by provided patterns.
 
 #### `truncateMessage(message: string, options: TruncateMessageOptions): string`
 
+Considers ANSI escape codes and truncates the message properly.
+
 Returns truncated message to specified length.
 
 - `message` (string) - Message to truncate.
 - `options` (object) - Truncate options.
 
 #### `normalizeMessages(messages: any[]): string[]`
+
+Converts objects to JSON, errors to formatted strings.
 
 Returns normalized messages as strings.
 
