@@ -66,3 +66,31 @@ export function truncateMessage(message: string, options: TruncateMessageOptions
 
   return result + ending;
 }
+
+/**
+ * Normalizes messages entries to strings.
+ *
+ * Converts objects to JSON, errors to formatted strings.
+ *
+ * @param messages - Messages to normalize.
+ * @returns Normalized messages.
+ */
+export function normalizeMessages(messages: any[]): string[] {
+  const entries: string[] = [];
+
+  for (const message of messages) {
+    if (message instanceof Error) {
+      entries.push(formatError(message));
+      continue;
+    }
+
+    if (typeof message === 'object') {
+      entries.push(JSON.stringify(message));
+      continue;
+    }
+
+    entries.push(message);
+  }
+
+  return entries;
+}

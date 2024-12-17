@@ -1,6 +1,6 @@
 import colors from 'picocolors';
 
-import { formatError, redactMessage, truncateMessage } from './helpers';
+import { normalizeMessages, redactMessage, truncateMessage } from './helpers';
 import { LoggerOptions } from './types/logger.options.type';
 
 export class Logger {
@@ -35,7 +35,7 @@ export class Logger {
   public info(...messages: any[]) {
     const prefix = `${this.createTime()} - ${colors.whiteBright('info')} [${this.name}]`;
 
-    console.log(this.formatMessage(`${prefix} ${this.normalizeMessages(messages).join(' ')}`));
+    console.log(this.formatMessage(`${prefix} ${normalizeMessages(messages).join(' ')}`));
   }
 
   /**
@@ -46,7 +46,7 @@ export class Logger {
   public warn(...messages: any[]) {
     const prefix = `${this.createTime()} - ${colors.cyanBright('warn')} [${this.name}]`;
 
-    console.log(this.formatMessage(`${prefix} ${this.normalizeMessages(messages).join(' ')}`));
+    console.log(this.formatMessage(`${prefix} ${normalizeMessages(messages).join(' ')}`));
   }
 
   /**
@@ -57,7 +57,7 @@ export class Logger {
   public error(...messages: any[]) {
     const prefix = `${this.createTime()} - ${colors.magentaBright('error')} [${this.name}]`;
 
-    console.log(this.formatMessage(`${prefix} ${this.normalizeMessages(messages).join(' ')}`));
+    console.log(this.formatMessage(`${prefix} ${normalizeMessages(messages).join(' ')}`));
   }
 
   private createTime() {
@@ -77,25 +77,5 @@ export class Logger {
     if (this.options.lowercase) message = message.toLowerCase();
 
     return message;
-  }
-
-  private normalizeMessages(messages: any[]): string[] {
-    const entries: string[] = [];
-
-    for (const message of messages) {
-      if (message instanceof Error) {
-        entries.push(formatError(message));
-        continue;
-      }
-
-      if (typeof message === 'object') {
-        entries.push(JSON.stringify(message));
-        continue;
-      }
-
-      entries.push(message);
-    }
-
-    return entries;
   }
 }
