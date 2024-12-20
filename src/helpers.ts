@@ -51,29 +51,18 @@ export function truncateMessage(message: string, options: TruncateMessageOptions
   ending = options.ending || '...';
 
   length = options.length || process.stdout.columns || 100;
-  if (length <= 0) return '';
-
   length = Math.max(length - ending.length, 0);
-  if (message.length <= length) return message.length === length ? message + ending : message;
 
-  let result = '';
-  let visible = 0;
+  if (length === 0) return '';
+  if (message.length < length) return message;
 
-  const regexp = ansiRegex();
+  const plain = message.replace(ansiRegex(), '');
+  if (plain.length < length) return message;
 
-  for (const line of message.split(regexp)) {
-    if (regexp.test(line)) result += line;
-    else {
-      const slice = line.slice(0, length - visible);
+  const diffs = message.length - plain.length;
+  const result = message.slice(0, length + diffs);
 
-      result += slice;
-      visible += slice.length;
-
-      if (visible >= length) break;
-    }
-  }
-
-  return result + ending;
+  return result.replace(ansiRegex(), '').length <= length ? result + ending : result;
 }
 
 /**
