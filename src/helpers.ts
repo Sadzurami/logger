@@ -4,6 +4,22 @@ import { RedactMessageOptions } from './types/redact-message.options.type';
 import { TruncateMessageOptions } from './types/truncate-message.options.type';
 
 /**
+ * Formats a name to a fixed length of 10 characters.
+ *
+ * Fills with '*' if shorter, truncates if longer.
+ *
+ * @param name - Name to format.
+ * @returns Formatted name.
+ */
+export function formatName(name: string): string {
+  const trimmed = name.slice(0, 10);
+
+  const padding = 10 - trimmed.length;
+
+  return trimmed + '*'.repeat(padding > 0 ? padding : 0).slice(0, -1) + '*';
+}
+
+/**
  * Formats an error to string, including all nested causes.
  *
  * @param error - Error to format.
