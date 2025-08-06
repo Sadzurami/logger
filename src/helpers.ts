@@ -12,9 +12,9 @@ import { TruncateMessageOptions } from './types/truncate-message.options.type';
  * @returns Formatted name.
  */
 export function formatName(name: string): string {
-  const trimmed = name.slice(0, 10);
+  const trimmed = name.slice(0, 10 - 1);
 
-  const padding = 10 - trimmed.length;
+  const padding = Math.max(10 - trimmed.length, 0);
 
   return trimmed + '*'.repeat(padding > 0 ? padding : 0).slice(0, -1) + '*';
 }
